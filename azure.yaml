@@ -1,3 +1,37 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/Azure/azure-dev/main/schemas/v1.0/azure.yaml.json
-
 name: myday
+resources:
+  ai-project:
+    type: ai.project
+    models:
+      - name: gpt-5-mini
+        version: "2025-08-07"
+        format: OpenAI
+        sku:
+          name: GlobalStandard
+          usageName: OpenAI.GlobalStandard.gpt-5-mini
+          capacity: 10
+  myday-db:
+    type: db.cosmos
+  api:
+    type: host.containerapp
+    uses:
+      - myday-db
+      - ai-project
+    port: 80
+  web:
+    type: host.containerapp
+    uses:
+      - api
+      - ai-project
+    port: 80
+services:
+  api:
+    project: src/api
+    host: containerapp
+    language: python
+  web:
+    project: src/web
+    host: containerapp
+    language: js
+    dist: dist
