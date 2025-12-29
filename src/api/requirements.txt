@@ -2,7 +2,8 @@ annotated-types==0.7.0
 anyio==3.7.1
 asgiref==3.9.1
 azure-ai-agents==1.1.0
-azure-ai-projects==1.0.0
+azure-ai-projects>=2.0.0b1
+azure-identity
 azure-common==1.1.28
 azure-core==1.35.0
 azure-cosmos==4.5.1
