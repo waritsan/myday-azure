@@ -18,6 +18,7 @@ resources:
     uses:
       - myday-db
       - ai-project
+      - vault
     port: 80
   web:
     type: host.containerapp
@@ -25,6 +26,8 @@ resources:
       - api
       - ai-project
     port: 80
+  vault:
+    type: keyvault
 services:
   api:
     project: src/api
